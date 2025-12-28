@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="15" alignment="CENTER" style="-fx-padding: 40;"
+      xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="by.mcsaltine.javafx_crud.LoginController">
+
+    <Label text="Вход в систему" style="-fx-font-size: 24; -fx-font-weight: bold"/>
+
+    <GridPane hgap="10" vgap="10">
+        <Label text="Email:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField fx:id="tfEmail" prefWidth="200" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+        <Label text="Пароль:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <PasswordField fx:id="tfPassword" prefWidth="200" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+    </GridPane>
+
+    <Button text="Войти" onAction="#login" prefWidth="200"/>
+    <Label fx:id="lblError" style="-fx-text-fill: red;"/>
+</VBox>

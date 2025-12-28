@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<TabPane prefHeight="975.0" prefWidth="741.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="by.mcsaltine.javafx_crud.MainController">
+
+    <tabs>
+        <!-- Вкладка "Пользователи" -->
+        <Tab closable="false" text="Пользователи">
+            <VBox prefHeight="574.0" prefWidth="402.0" spacing="15" style="-fx-padding: 20;">
+
+                <!-- Верхняя панель: текущий пользователь и кнопка выхода -->
+                <HBox alignment="CENTER_RIGHT" spacing="10">
+                    <Label text="Вы вошли как:" />
+                    <Label fx:id="lblCurrentUser" style="-fx-font-weight: bold;" />
+                    <Region HBox.hgrow="ALWAYS" />
+                    <Button onAction="#logout" style="-fx-text-fill: #d9534f;" text="Выйти" />
+                </HBox>
+
+                <Separator />
+
+                <!-- Форма добавления пользователя — видна ТОЛЬКО админу -->
+                <Pane fx:id="addUserPanel" managed="false" visible="false">
+                    <VBox spacing="15" style="-fx-padding: 10;">
+                        <Label style="-fx-font-size: 16; -fx-font-weight: bold;" text="Добавить нового пользователя" />
+
+                        <GridPane hgap="15" vgap="12">
+                            <columnConstraints>
+                                <ColumnConstraints prefWidth="120" />
+                                <ColumnConstraints prefWidth="250" />
+                            </columnConstraints>
+
+                            <!-- Имя -->
+                            <Label text="Имя:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                            <TextField fx:id="tfName" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+                            <!-- Email -->
+                            <Label text="Email:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                            <TextField fx:id="tfEmail" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                            <!-- Возраст -->
+                            <Label text="Возраст:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                            <TextField fx:id="tfAge" prefWidth="100" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+                            <!-- Роль — отдельная строка -->
+                            <Label text="Роль:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                            <ComboBox fx:id="cbRole" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+                            <!-- Пароль — отдельная строка -->
+                            <Label text="Пароль:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                            <PasswordField fx:id="tfPassword" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                     <rowConstraints>
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                     </rowConstraints>
+                        </GridPane>
+
+                        <HBox alignment="CENTER_LEFT" spacing="15" style="-fx-padding: 10 0 0 0;">
+                            <Button onAction="#addUser" style="-fx-font-size: 14px; -fx-padding: 8 20 8 20;" text="Добавить пользователя" />
+                        </HBox>
+                    </VBox>
+                </Pane>
+
+                <Separator />
+
+                <!-- Список пользователей -->
+                <Label style="-fx-font-size: 14; -fx-font-weight: bold;" text="Список пользователей:" />
+
+                <!-- Кнопка удаления — видна только админу -->
+                <HBox alignment="CENTER_RIGHT" spacing="10">
+                    <Button fx:id="deleteButton" managed="false" onAction="#deleteUser" style="-fx-text-fill: red;" text="Удалить выбранного" visible="false" />
+                </HBox>
+
+                <ListView fx:id="listView" prefHeight="400" />
+
+            </VBox>
+        </Tab>
+
+        <!-- Вкладка "Мои курсы" (пока простая — можно расширить позже) -->
+        <Tab closable="false" text="Мои курсы">
+            <VBox spacing="20" style="-fx-padding: 20;">
+                <Label style="-fx-font-size: 16; -fx-font-weight: bold;" text="Мои записанные курсы" />
+
+                <ListView fx:id="lvMyCourses" prefHeight="400" />
+
+                <!-- Панель управления курсами — только для админа -->
+                <Pane fx:id="adminCoursesPanel" managed="false" visible="false">
+                    <VBox spacing="15">
+                        <Separator />
+
+                        <Label style="-fx-font-weight: bold;" text="Управление курсами (только администратор)" />
+
+                        <HBox spacing="10">
+                            <TextField fx:id="tfCourseTitle" prefWidth="200" promptText="Название курса" />
+                            <TextField fx:id="tfCourseDesc" prefWidth="300" promptText="Описание курса" />
+                            <Button onAction="#addCourse" text="Добавить курс" />
+                        </HBox>
+
+                        <Label text="Все курсы в системе:" />
+                        <ListView fx:id="lvAllCourses" prefHeight="250" />
+                    </VBox>
+                </Pane>
+            </VBox>
+        </Tab>
+
+    </tabs>
+</TabPane>
